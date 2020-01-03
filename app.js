@@ -1,0 +1,31 @@
+const config = require('./utils/config')
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const route = require('./controllers/notes.js')
+const middleware = require('./utils/middleware.js')
+const mongoose = require('mongoose')
+
+console.log('connecting to', config.MONGODB_URI)
+
+mongoose.connect(config.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
+    .then(() => {
+        console.log('connected to MongoDB')
+    })
+    .catch(error => {
+        console.log('error connecting to MongoDB', error.message)
+    })
+
+app.use(cors())
+app.use(express.static('build'))
+app.use(bodyParser.json())
+app.use(middleware.requestLogger)
+
+app.use('/api/notes', route) // routes that start with /api/notes will be redirected to route
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
+
+module.exports = app
+

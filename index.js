@@ -1,3 +1,14 @@
+const app = require('./app') //express app
+const http = require('http')
+const config = require('./utils/config')
+
+const server = http.createServer(app)
+
+server.listen(config.PORT, () => {
+    console.log(`Server running on port${config.PORT}`)
+})
+
+/*
 if(process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
@@ -92,3 +103,4 @@ const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
+*/
