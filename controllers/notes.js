@@ -7,12 +7,12 @@ route.get('/', async (req, res) => {
 })
 
 route.get('/:id', async (req, res, next) => {
-    const note = await Note.findById(req.params.id)
     try {
+        const note = await Note.findById(req.params.id)
         if(note) {
             res.json(note.toJSON())
         } else {
-            res.json(note.toJSON())
+            res.status(404).end()
         }
     } catch(error) {
         next(error)
