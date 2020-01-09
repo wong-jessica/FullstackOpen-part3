@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const route = require('./controllers/notes.js')
+const noteRoute = require('./controllers/notes.js')
+const userRoute = require('./controllers/users.js')
 const middleware = require('./utils/middleware.js')
 const logger = require('./utils/logger.js')
 const mongoose = require('mongoose')
@@ -23,7 +24,8 @@ app.use(express.static('build'))
 app.use(bodyParser.json())
 app.use(middleware.requestLogger)
 
-app.use('/api/notes', route) // routes that start with /api/notes will be redirected to route
+app.use('/api/notes', noteRoute) // routes that start with /api/notes will be redirected to route
+app.use('/api/users', userRoute)
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
