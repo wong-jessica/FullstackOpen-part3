@@ -1,8 +1,8 @@
 POST http://localhost:3001/api/notes
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imdlb3JnaWFubyIsImlkIjoiNWUxNmE1ZmI3N2VjNDEwNDhjMmZjNWFmIiwiaWF0IjoxNTc4NjI5MzQ3fQ.4ZXknmF2uiHvr15yYFf6uhoEJdcPtJ_dJ8Vfd2OlmnI
 
 {
     "content": "Sim is short for simulation, right?",
-    "important": false,
-    "userId": "5e16a5fb77ec41048c2fc5af"
+    "important": false
 }
